@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Cafe & Bakery - Master Template</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Brand Color System */
+            --primary-color: #18181b;
+            --accent-color: #27272a;
+            --bg-main: #fafafa;
+            --card-bg: #ffffff;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --border-color: #e4e4e7;
+            --accent-light: #f4f4f5;
+            
+            /* Typography */
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Layout & Spacing */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --container-width: 1200px;
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-top: 110px; /* Space for dual header bar */
+            padding-bottom: 90px; /* Space for customization drawer toggle */
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        button {
+            cursor: pointer;
+            font-family: var(--font-body);
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Navigation & Multi-page Preview Controls */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .demo-bar {
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 6px 24px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demo-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.7rem;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: var(--card-bg);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            background: var(--accent-light);
+            padding: 4px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-link {
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-link.active {
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-light);
+            border-color: var(--text-muted);
+        }
+
+        .page-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section Components */
+        .section {
+            padding: 70px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 40px 0 80px 0;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3.4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 520px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+
+        .hero-card-overlay {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            max-width: 260px;
+        }
+
+        /* Highlights Grid */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+        }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+        }
+
+        .card-text {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .dietary-tags {
+            display: flex;
+            gap: 6px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--accent-light);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Story Snippet Section */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .story-img-1 {
+            border-radius: var(--radius-md);
+            height: 320px;
+        }
+
+        .story-img-2 {
+            border-radius: var(--radius-md);
+            height: 320px;
+            margin-top: 30px;
+        }
+
+        /* Menu Filter Tabs */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .menu-tab.active, .menu-tab:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .menu-item-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu-item-img {
+            width: 90px;
+            height: 90px;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        .menu-item-details {
+            flex-grow: 1;
+        }
+
+        .menu-item-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        .menu-notice-banner {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            height: 220px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+        }
+
+        .hours-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hours-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .hours-table td {
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            background: var(--card-bg);
+        }
+
+        /* Map frame placeholder */
+        .map-placeholder {
+            width: 100%;
+            height: 240px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating Customization Drawer */
+        .guide-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .guide-toggle-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .guide-drawer {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border-top: 2px solid var(--primary-color);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+            z-index: 1002;
+            transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .guide-drawer.open {
+            bottom: 0;
+        }
+
+        .guide-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--accent-light);
+        }
+
+        .guide-body {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .prompt-box {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-family: monospace;
+            font-size: 0.82rem;
+            color: var(--primary-color);
+            position: relative;
+            margin-top: 8px;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* Color Customizer Controls in Guide */
+        .color-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .color-item input[type="color"] {
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .hero, .story-section, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-image {
+                height: 350px;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .guide-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 130px;
+            }
+            .main-nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+                gap: 10px;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Navigation & Demo Controls -->
+    <header class="fixed-header">
+        <div class="demo-bar">
+            <span><span class="demo-badge">Master Template</span> Switch pages below to test rendering</span>
+            <span style="font-size: 0.75rem;"><i class="fa-solid fa-code"></i> Ready for Cursor AI</span>
+        </div>
+        <div class="container">
+            <nav class="main-nav">
+                <a href="#" class="logo" onclick="switchPage('home')">
+                    <div class="logo-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                    <span id="brand-name-display">KRAVE CAFE</span>
+                </a>
+
+                <!-- Multi-Page Navigation Switcher -->
+                <div class="nav-links">
+                    <button class="nav-link active" onclick="switchPage('home')" id="nav-home">Home</button>
+                    <button class="nav-link" onclick="switchPage('menu')" id="nav-menu">Menu</button>
+                    <button class="nav-link" onclick="switchPage('about')" id="nav-about">About & Contact</button>
+                </div>
+
+                <button class="btn-primary" onclick="switchPage('menu')">
+                    <span>View Menu</span>
+                    <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem;"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE 1: HOMEPAGE -->
+    <main id="page-home" class="page-view active">
+        <!-- Hero Section -->
+        <section class="container section">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        <span>Open Today: 7:00 AM – 7:00 PM</span>
+                    </div>
+                    <h1 class="hero-title" id="hero-title-text">Artisanal Coffee & Daily Baked Goods</h1>
+                    <p class="hero-desc" id="hero-desc-text">A minimal neighborhood space crafting specialty single-origin coffee, sourdough pastries, and fresh organic matcha.</p>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="switchPage('menu')">Explore Our Menu</button>
+                        <button class="btn-outline" onclick="switchPage('about')">Find Our Location</button>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Minimalist Cafe Interior" class="hero-image">
+                    <div class="hero-card-overlay">
+                        <i class="fa-solid fa-award" style="font-size: 1.8rem; color: var(--primary-color);"></i>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.9rem;">Specialty Grade</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">100% Arabica Beans</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Highlights Grid -->
+        <section class="section" style="background: var(--card-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-subtitle">House Specialties</div>
+                    <h2 class="section-title">Today's Highlights</h2>
+                    <p style="color: var(--text-muted);">Freshly prepared each morning using locally sourced ingredients.</p>
+                </div>
+
+                <div class="highlights-grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Oat Milk Cappuccino" class="card-img">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h3 class="card-title">House Cappuccino</h3>
+                                <span class="card-price">$4.50</span>
+                            </div>
+                            <p class="card-text">Double shot espresso with velvety steamed oat milk and dark cacao dust.</p>
+                            <div class="dietary-tags">
+                                <span class="tag">VG</span>
+                                <span class="tag">HOT/ICE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter Croissant" class="card-img">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h3 class="card-title">Artisan Croissant</h3>
+                                <span class="card-price">$3.80</span>
+                            </div>
+                            <p class="card-text">Flaky 72-hour fermented French butter croissant baked fresh daily.</p>
+                            <div class="dietary-tags">
+                                <span class="tag">BAKED TODAY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Ceremonial Matcha" class="card-img">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h3 class="card-title">Kyoto Ceremonial Matcha</h3>
+                                <span class="card-price">$5.20</span>
+                            </div>
+                            <p class="card-text">First-harvest Uji matcha whisked with almond milk and agave nectar.</p>
+                            <div class="dietary-tags">
+                                <span class="tag">VG</span>
+                                <span class="tag">ORGANIC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Snippet Section -->
+        <section class="container section">
+            <div class="story-section">
+                <div class="story-images">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Coffee Brewing" class="story-img-1">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Pastry Counter" class="story-img-2">
+                </div>
+                <div>
+                    <div class="section-subtitle">Our Philosophy</div>
+                    <h2 class="section-title" style="margin-bottom: 20px;">Simple Ingredients, Exceptional Quality</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;">We believe in slow mornings, intentional craftsmanship, and fostering community connection through good food and drink.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Our beans are directly traded from eco-conscious roasters, and our bakery goods are made from scratch each night.</p>
+                    <button class="btn-outline" onclick="switchPage('about')">Read Our Full Story</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PAGE 2: MENU PAGE -->
+    <main id="page-menu" class="page-view">
+        <section class="container section">
+            <div class="section-header">
+                <div class="section-subtitle">Made Fresh Daily</div>
+                <h2 class="section-title">Our Food & Drink Menu</h2>
+                <p style="color: var(--text-muted);">Please inform our team of any severe food allergies before ordering.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="menu-tabs">
+                <button class="menu-tab active" onclick="filterMenu('all', this)">All Items</button>
+                <button class="menu-tab" onclick="filterMenu('coffee', this)">Coffee & Espresso</button>
+                <button class="menu-tab" onclick="filterMenu('tea', this)">Matcha & Teas</button>
+                <button class="menu-tab" onclick="filterMenu('bakery', this)">Bakery & Pastries</button>
+                <button class="menu-tab" onclick="filterMenu('brunch', this)">All-Day Brunch</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menu-container">
+                <!-- Coffee Items -->
+                <div class="menu-item-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Flat White">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">Velvet Flat White</h3>
+                            <span class="card-price">$4.20</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">Micro-foamed whole milk poured over double ristretto espresso.</p>
+                        <div class="dietary-tags"><span class="tag">HOT</span><span class="tag">V</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Cold Brew">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">24-Hour Cold Brew</h3>
+                            <span class="card-price">$4.80</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">Steeped cold for 24 hours. Smooth, low acidity with notes of dark chocolate.</p>
+                        <div class="dietary-tags"><span class="tag">ICE</span><span class="tag">VG</span></div>
+                    </div>
+                </div>
+
+                <!-- Matcha & Teas -->
+                <div class="menu-item-card" data-category="tea">
+                    <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Iced Matcha">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">Strawberry Cloud Matcha</h3>
+                            <span class="card-price">$5.80</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">House-made fresh strawberry puree layered with oat milk & ceremonial matcha.</p>
+                        <div class="dietary-tags"><span class="tag">ICE</span><span class="tag">VG</span></div>
+                    </div>
+                </div>
+
+                <!-- Bakery -->
+                <div class="menu-item-card" data-category="bakery">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Cinnamon Bun">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">Cardamom & Cinnamon Bun</h3>
+                            <span class="card-price">$4.50</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">Nordic style brioche dough rolled with aromatic cardamom and cinnamon glaze.</p>
+                        <div class="dietary-tags"><span class="tag">BAKED DAILY</span></div>
+                    </div>
+                </div>
+
+                <!-- Brunch -->
+                <div class="menu-item-card" data-category="brunch">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Avocado Toast">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">Sourdough Avocado Toast</h3>
+                            <span class="card-price">$11.50</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">Smashed hass avocado, radishes, chili flakes, and za'atar on grilled sourdough.</p>
+                        <div class="dietary-tags"><span class="tag">VG</span><span class="tag">GF AVAILABLE</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card" data-category="brunch">
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=200&q=80" class="menu-item-img" alt="Granola Bowl">
+                    <div class="menu-item-details">
+                        <div class="menu-item-head">
+                            <h3 style="font-size: 1rem; font-weight: 600;">Açaí & Berry Energy Bowl</h3>
+                            <span class="card-price">$10.00</span>
+                        </div>
+                        <p class="card-text" style="margin-bottom: 8px;">Organic açaí base topped with house granola, chia seeds, and raw honey.</p>
+                        <div class="dietary-tags"><span class="tag">VG</span><span class="tag">GF</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-notice-banner">
+                <i class="fa-solid fa-leaf" style="color: var(--primary-color); margin-right: 6px;"></i>
+                <strong>Dietary Notes:</strong> Milk options (Oat, Almond, Coconut, Soy) available for +$0.60. Gluten-Free bread swap available for all toast items.
+            </div>
+        </section>
+    </main>
+
+    <!-- PAGE 3: ABOUT & CONTACT -->
+    <main id="page-about" class="page-view">
+        <section class="container section">
+            <div class="section-header">
+                <div class="section-subtitle">Get In Touch</div>
+                <h2 class="section-title">Visit Our Space</h2>
+                <p style="color: var(--text-muted);">We are located in the heart of the design district. Walk-ins always welcome.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=500&q=80" alt="Cafe Bar"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=500&q=80" alt="Coffee Table"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=500&q=80" alt="Barista At Work"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80" alt="Pastry Board"></div>
+            </div>
+
+            <!-- Contact & Hours Details Grid -->
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Hours & Location</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                        <i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i>
+                        <span id="address-display">124 Artisan Alley, Creative Quarter, NY 10001</span>
+                    </p>
+
+                    <table class="hours-table">
+                        <tr><td>Monday – Friday</td><td>7:00 AM – 7:00 PM</td></tr>
+                        <tr><td>Saturday</td><td>8:00 AM – 6:00 PM</td></tr>
+                        <tr><td>Sunday</td><td>8:00 AM – 4:00 PM</td></tr>
+                    </table>
+
+                    <!-- Map Frame Placeholder -->
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-map-location-dot" style="font-size: 2rem;"></i>
+                        <span style="font-size: 0.85rem; font-weight: 500;">Google Maps Embed Placeholder</span>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Send Us a Message</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">For catering inquiries, group reservations, or general questions.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-input" placeholder="Jane Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="jane@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" rows="4" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo">
+                        <div class="logo-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                        <span class="footer-brand">KRAVE CAFE</span>
+                    </div>
+                    <p class="footer-desc">A minimal neighborhood coffee shop & sourdough bakery dedicated to simple quality.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Pages</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="switchPage('home')">Home</a></li>
+                        <li><a href="#" onclick="switchPage('menu')">Menu</a></li>
+                        <li><a href="#" onclick="switchPage('about')">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li>hello@kravecafe.com</li>
+                        <li>+1 (555) 234-5678</li>
+                        <li>@krave.cafe</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Location</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted);">124 Artisan Alley<br>Creative Quarter, NY 10001</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 KRAVE CAFE. All rights reserved.</span>
+                <span>Master Template by Cursor Workflow</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cursor Customization Guide Drawer -->
+    <button class="guide-toggle-btn" onclick="toggleGuide()">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Cursor Prompt Guide</span>
+    </button>
+
+    <div class="guide-drawer" id="guide-drawer">
+        <div class="guide-header">
+            <div>
+                <strong style="font-size: 1rem;"><i class="fa-solid fa-terminal" style="margin-right: 6px;"></i> How to Customize with Cursor AI</strong>
+                <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Copy these prompts into Cursor Composer to customize this template for any client in seconds.</span>
+            </div>
+            <button onclick="toggleGuide()" style="font-size: 1.2rem; padding: 4px 8px;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="guide-body">
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 8px;">1. Change Client Copy & Info Prompt:</h4>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-1')">Copy</button>
+                    <code id="prompt-1">"Update the cafe name to 'The Daily Grind', change address to '45 Main Street', and update the hero headline to 'Freshly Roasted Specialty Coffee in Downtown'."</code>
+                </div>
+
+                <h4 style="font-size: 0.9rem; margin-top: 16px; margin-bottom: 8px;">2. Re-skin Theme Palette Prompt:</h4>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-2')">Copy</button>
+                    <code id="prompt-2">"Update the CSS :root variables in index.html to a warm earthy palette: set --primary-color to #3b2314, --accent-light to #fbf6f0, and --bg-main to #fcfbfa."</code>
+                </div>
+            </div>
+
+            <div>
+                <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Live Theme Quick-Tester (Preview Colors Now)</h4>
+                <div class="color-picker-grid">
+                    <div class="color-item">
+                        <input type="color" id="picker-primary" value="#18181b" onchange="updateLiveColor('--primary-color', this.value)">
+                        <label>Primary</label>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="picker-bg" value="#fafafa" onchange="updateLiveColor('--bg-main', this.value)">
+                        <label>Background</label>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="picker-card" value="#ffffff" onchange="updateLiveColor('--card-bg', this.value)">
+                        <label>Card BG</label>
+                    </div>
+                    <div class="color-item">
+                        <input type="color" id="picker-text" value="#09090b" onchange="updateLiveColor('--text-main', this.value)">
+                        <label>Text</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Multi-Page Navigation Logic */
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Deactivate all nav buttons
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Activate corresponding nav link
+            const targetNav = document.getElementById('nav-' + pageId);
+            if (targetNav) {
+                targetNav.classList.add('active');
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Menu Filter Tabs Logic */
+        function filterMenu(category, tabBtn) {
+            // Update active tab button style
+            document.querySelectorAll('.menu-tab').forEach(btn => btn.classList.remove('active'));
+            tabBtn.classList.add('active');
+
+            // Filter items
+            const items = document.querySelectorAll('.menu-item-card');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        /* Customization Guide Drawer Toggle */
+        function toggleGuide() {
+            const drawer = document.getElementById('guide-drawer');
+            drawer.classList.toggle('open');
+        }
+
+        /* Copy Prompt Text Helper */
+        function copyPrompt(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            alert("Prompt copied to clipboard!");
+        }
+
+        /* Live Color Variable Previewer */
+        function updateLiveColor(variableName, hexValue) {
+            document.documentElement.style.setProperty(variableName, hexValue);
+        }
+    </script>
+</body>
+</html>
